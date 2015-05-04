@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="JSONFormatter.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="JSONFormatter.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    $.getJSON('/test.json', function(json, textStatus) {
+        console.log(json)
+        JSONFormatter.format(json, {
+          collapse: false, // Setting to 'true' this will format the JSON into a collapsable/expandable tree
+          appendTo: 'body', // A string of the id, class or element name to append the formatted json
+          list_id: 'json' // The name of the id at the root ul of the formatted JSON
+        })
+    });
+    
+</script>
+</html>

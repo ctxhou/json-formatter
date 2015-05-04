@@ -1,0 +1,27 @@
+{
+    "url_id": "123sdfsdfsdfdsdsf",
+    "title": "123123",
+    "description": "fork from Joe's website",
+    "icon": "./public/icon.png",
+    "greeting": "123123123213sdfsdfssdfsdf",
+    "profile": "I am jack hou!! yo",
+    "contact": "i am wwwy3y3, web developer, currently in love with nodeJS!",
+    "projects": [{
+        "anchor": "p106",
+        "bg-color": "#f1dbf0",
+        "nav-title": "It's like magic",
+        "title": { 
+            "hey": "yo"
+        },
+        "subtitle": "Illustration—Design",
+        "images": ["./public/mg-2.png", "1123123", "13"],
+        "test": [""]
+    }, {
+        "anchor": "p104",
+        "bg-color": "#ffab59",
+        "nav-title": "Happy Halloween 123123213213",
+        "title": "Halloween Decorations for Self Promotion",
+        "subtitle": "Illustration—Design",
+        "images": ["http://i.imgur.com/eTlGmwZ.png"]
+    }]
+}
