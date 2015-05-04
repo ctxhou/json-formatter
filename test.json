@@ -11,7 +11,10 @@
         "bg-color": "#f1dbf0",
         "nav-title": "It's like magic",
         "title": { 
-            "hey": "yo"
+            "hey": "yo",
+            "y11": {
+                "12312": "123"
+            }
         },
         "subtitle": "Illustration—Design",
         "images": ["./public/mg-2.png", "1123123", "13"],

@@ -6,6 +6,8 @@ JSONFormatter = (function() {
       'appendTo' : 'body',
       'list_id' : 'json',
       'id_prefix': 'cn',
+      'input_class': 'test',
+      'text_class': 'test2',
       'collapse' : false
     }, options);
 
@@ -16,14 +18,14 @@ JSONFormatter = (function() {
       $.each(json2, function(k3, v3) {
         // object of objects
         if(typeof v3 == 'object') {
-          $('#' + settings.list_id + ' #' + ulId).append('<li><span>{</span> <ul id="' + ulId + '-' + k3 + '"></ul></li>');
+          $('#' + settings.list_id + ' #' + ulId).append('<li><ul id="' + ulId + '-' + k3 + '"></ul></li>');
           $.each(v3, function(k4, v4) {
             if(typeof v4 == 'object' && v4 != null) {
-              $('#' + settings.list_id + ' #' + ulId + '-' + k3).append('<li>' + k4 + ' <span>{</span> <ul id="'+k4+'-'+loopCount+'"></ul></li>');
+              $('#' + settings.list_id + ' #' + ulId + '-' + k3).append('<li><div class="'+settings.text_class+'">' + k4 + '</div><ul id="'+k4+'-'+loopCount+'"></ul></li>');
               loopAgain(v4, k4, k4 + '-' + loopCount, path + "." +k4);
             }
             else {
-              $('#' + settings.list_id + ' #' + ulId + '-' + k3).append('<li>' + k4 + ': <input placeholder="' + v4 + '" cn-data-path="'+path + "." +k4+'"></li>');
+              $('#' + settings.list_id + ' #' + ulId + '-' + k3).append('<li><div class="'+settings.text_class+'">' + k4 + '</div>'+_input_html(v4, path + "." +k4)+'</li>');
             }
 
           });
@@ -43,35 +45,34 @@ JSONFormatter = (function() {
         if(nextVal != null && typeof nextVal == 'object') {
           if(nextVal.length == 0) {
             // an empty object, just output that
-            $('#' + settings.list_id + ' #' + ulId).append('<li><i>' + nextKey + ':</i> []</li>');
+            $('#' + settings.list_id + ' #' + ulId).append('<li><div class='+settings.text_class+'>' + nextKey + '</div> []</li>');
           }
           else if(nextVal.length >= 1) {
             // an object of objects
-            $('#' + settings.list_id + ' #' + ulId).append('<li><b>' + nextKey + ':</b> <span>[</span> ' + newList + '</li>');
+            $('#' + settings.list_id + ' #' + ulId).append('<li><div class="'+settings.text_class+'">' + nextKey + '</div> ' + newList + '</li>');
             loopObjectOfObjects(nextVal, nextListId, path+"."+nextKey);
           }
           else if(nextVal.length == undefined) {
             // next node
-            $('#' + settings.list_id + ' #' + ulId).append('<li><b>' + nextKey + ':</b> <span>{</span> ' + newList + '</li>');
+            $('#' + settings.list_id + ' #' + ulId).append('<li><div class="'+settings.text_class+'">' + nextKey + '</div> ' + newList + '</li>');
             loopAgain(nextVal, nextKey, nextListId, path+"."+nextKey);
           }
         }
         else {
-            // $('#' + settings.list_id + ' #' + ulId).append('<li><i>'+ nextKey + ':</i> ' + nextVal + '</li>');
-            $('#' + settings.list_id + ' #' + ulId).append('<li><i>'+ nextKey + ':</i> <input placeholder="*' + nextVal + '" cn-data-path="'+path+"."+nextKey+'"></li>');
+            if ($.isArray(v)) {
+              // if it is array, not show the key(counting number)
+              $('#' + settings.list_id + ' #' + ulId).append('<li>'+_input_html(nextVal, path+"."+nextKey)+'</li>');        
+            } else {
+              $('#' + settings.list_id + ' #' + ulId).append('<li><div class='+settings.text_class+'>'+ nextKey + '</div>'+_input_html(nextVal, path+"."+nextKey)+'</li>');
+            }
+            // $('#' + settings.list_id + ' #' + ulId).append('<li><div class='+settings.text_class+'>'+ nextKey + '</div> ' + nextVal + '</li>');
         }
       });
-    };
+    },
 
-    // addClosingBraces = function() {
-    //   $('#' + settings.list_id + ' span').each(function() {
-    //     var closingBrace = '<span>}</span>';
-    //     if($(this).text() == "[") {
-    //       closingBrace = '<span>]</span>';
-    //     }
-    //     $(this).parent().find('ul').eq(0).after(closingBrace);
-    //   });
-    // };
+    _input_html = function(val, path) {
+      return '<input class="' + settings.input_class + '"value="' + val + '" cn-data-path="'+path+'">'
+    };
 
     var jsonList = $('<ul id="' + settings.list_id + '" />');
 
@@ -100,21 +101,21 @@ JSONFormatter = (function() {
         });
 
         if(goObj) {
-          // $('#' + settings.list_id).append('<li><b>' + key + ':</b> <span>[</span><ul id="' + nk + '-' + loopCount + '"></ul></li>');
-          $('#' + settings.list_id).append('<li><b>' + key + ':</b> <div id="' + nk + '-' + loopCount + '"></div></li>');
-          loopObjectOfObjects(val, nk + '-' + loopCount, key);
+          // $('#' + settings.list_id).append('<li><div class="'+settings.text_class+'">' + key + '</div> <span>[</span><ul id="' + nk + '-' + loopCount + '"></ul></li>');
+          $('#' + settings.list_id).append('<li><div class="'+settings.text_class+'">' + key + '</div> <div id="' + settings.id_prefix+'-'+nk + '-' + loopCount + '"></div></li>');
+          loopObjectOfObjects(val, settings.id_prefix+'-'+nk + '-' + loopCount, key);
         }
         else if(goArray) {
-          $('#' + settings.list_id).append('<li><b>' + key + ':</b> <div id="' + nk + '-' + loopCount + '"></div></li>');
-          loopAgain(val, nk, nk + '-' + loopCount, key);
+          $('#' + settings.list_id).append('<li><div class="'+settings.text_class+'">' + key + '</div> <div id="' + settings.id_prefix+'-'+nk + '-' + loopCount + '"></div></li>');
+          loopAgain(val, nk, settings.id_prefix+'-'+nk + '-' + loopCount, key);
         }
         else {
-          $('#' + settings.list_id).append('<li><b>' + key + ':</b> <div id="' + key + '-' + loopCount + '"></div></li>');
-          loopAgain(val, key, key + '-' + loopCount, key);
+          $('#' + settings.list_id).append('<li><div class="'+settings.text_class+'">' + key + '</div> <div id="' + settings.id_prefix+'-'+key + '-' + loopCount + '"></div></li>');
+          loopAgain(val, key, settings.id_prefix+'-'+key + '-' + loopCount, key);
         }
       }
       else {
-        $('#' + settings.list_id).append('<li><i>' + key + ':</i> <input placeholder="' + val + '" cn-data-path="'+key+'"></li>');
+        $('#' + settings.list_id).append('<li><div class='+settings.text_class+'>' + key + '</div>'+_input_html(val, key)+'</li>');
       }
     });
 
@@ -124,21 +125,6 @@ JSONFormatter = (function() {
       addToggles(settings.list_id);
     }
 
-  },
-
-  addToggles = function( listId ) {
-    $('#' + listId + " > li").find('ul').each(function() {
-      $(this).parent().find('span').eq(0).after('<span class="toggle fake-link"> - </span>');
-    });
-
-    $('.toggle').next().slideUp().end().text(' + ').on('click', function() {
-      if($(this).next().is(":visible")) {
-        $(this).next().slideUp().end().text(' + ');
-      }
-      else {
-        $(this).next().slideDown().end().text(' - ');
-      }
-    });
   };
 
   return {
