@@ -7,8 +7,7 @@ JSONFormatter = (function() {
       'list_id' : 'json',
       'id_prefix': 'cn',
       'input_class': 'test',
-      'text_class': 'test2',
-      'collapse' : false
+      'text_class': 'test2'
     }, options);
 
     var loopCount = 0;
@@ -22,7 +21,7 @@ JSONFormatter = (function() {
           $.each(v3, function(k4, v4) {
             if(typeof v4 == 'object' && v4 != null) {
               $('#' + settings.list_id + ' #' + ulId + '-' + k3).append('<li><div class="'+settings.text_class+'">' + k4 + '</div><ul id="'+k4+'-'+loopCount+'"></ul></li>');
-              loopAgain(v4, k4, k4 + '-' + loopCount, path + "." +k4);
+              loopAgain(v4, k4, k4 + '-' + loopCount, path + "." + k3+ "." +k4);
             }
             else {
               $('#' + settings.list_id + ' #' + ulId + '-' + k3).append('<li><div class="'+settings.text_class+'">' + k4 + '</div>'+_input_html(v4, path + "." +k4)+'</li>');
@@ -102,7 +101,7 @@ JSONFormatter = (function() {
 
         if(goObj) {
           // $('#' + settings.list_id).append('<li><div class="'+settings.text_class+'">' + key + '</div> <span>[</span><ul id="' + nk + '-' + loopCount + '"></ul></li>');
-          $('#' + settings.list_id).append('<li><div class="'+settings.text_class+'">' + key + '</div> <div id="' + settings.id_prefix+'-'+nk + '-' + loopCount + '"></div></li>');
+          $('#' + settings.list_id).append('<li><div class="'+settings.text_class+'">*' + key + '</div> <div id="' + settings.id_prefix+'-'+nk + '-' + loopCount + '"></div></li>');
           loopObjectOfObjects(val, settings.id_prefix+'-'+nk + '-' + loopCount, key);
         }
         else if(goArray) {
@@ -118,13 +117,6 @@ JSONFormatter = (function() {
         $('#' + settings.list_id).append('<li><div class='+settings.text_class+'>' + key + '</div>'+_input_html(val, key)+'</li>');
       }
     });
-
-    addClosingBraces();
-
-    if(settings.collapse) {
-      addToggles(settings.list_id);
-    }
-
   };
 
   return {
