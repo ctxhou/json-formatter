@@ -18,13 +18,14 @@ JSONFormatter = (function() {
         // object of objects
         if(typeof v3 == 'object') {
           $('#' + settings.list_id + ' #' + ulId).append('<li><ul id="' + ulId + '-' + k3 + '"></ul></li>');
+          var new_path = path + "." + k3;
           $.each(v3, function(k4, v4) {
             if(typeof v4 == 'object' && v4 != null) {
               $('#' + settings.list_id + ' #' + ulId + '-' + k3).append('<li><div class="'+settings.text_class+'">' + k4 + '</div><ul id="'+k4+'-'+loopCount+'"></ul></li>');
-              loopAgain(v4, k4, k4 + '-' + loopCount, path + "." + k3+ "." +k4);
+              loopAgain(v4, k4, k4 + '-' + loopCount, new_path + "." +k4);
             }
             else {
-              $('#' + settings.list_id + ' #' + ulId + '-' + k3).append('<li><div class="'+settings.text_class+'">' + k4 + '</div>'+_input_html(v4, path + "." +k4)+'</li>');
+              $('#' + settings.list_id + ' #' + ulId + '-' + k3).append('<li><div class="'+settings.text_class+'">' + k4 + '</div>'+_input_html(v4, new_path + "." +k4)+'</li>');
             }
 
           });
