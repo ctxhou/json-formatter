@@ -1,30 +1,31 @@
 {
-    "url_id": "123sdfsdfsdfdsdsf",
-    "title": "123123",
-    "description": "fork from Joe's website",
-    "icon": "./public/icon.png",
-    "greeting": "123123123213sdfsdfssdfsdf",
-    "profile": "I am jack hou!! yo",
+    "title": "dfsdf",
+    "description": "fork from Joe's websitesdf sdfs ",
+    "icon": "./public/icon.pngsdf ",
+    "greeting": "jisfjisdf jisdf ",
+    "profile": "yomaninfisdf isjdf\nsojidf \n",
     "contact": "i am wwwy3y3, web developer, currently in love with nodeJS!",
-    "projects": [{
-        "anchor": "p106",
-        "bg-color": "#f1dbf0",
-        "nav-title": "It's like magic",
-        "title": { 
-            "hey": "yo",
-            "y11": {
-                "12312": "123"
-            }
+    "projects": [
+        {
+            "anchor": "p106",
+            "bg-color": "#f1dbf0",
+            "nav-title": "Magic Gardens",
+            "title": "Magic Gardens Poster Show at One Grand Gallery",
+            "subtitle": "Illustration—Design",
+            "images": [
+                "./public/mg-2.png"
+            ]
         },
-        "subtitle": "Illustration—Design",
-        "images": ["./public/mg-2.png", "1123123", "13"],
-        "test": [""]
-    }, {
-        "anchor": "p104",
-        "bg-color": "#ffab59",
-        "nav-title": "Happy Halloween 123123213213",
-        "title": "Halloween Decorations for Self Promotion",
-        "subtitle": "Illustration—Design",
-        "images": ["http://i.imgur.com/eTlGmwZ.png"]
-    }]
+        {
+            "anchor": "p104",
+            "bg-color": "#777",
+            "nav-title": "Happy Halloween",
+            "title": "Halloween Decorations for Self Promotion",
+            "subtitle": "sdf Illustration—Designsdf ssf sd df sdf sdf",
+            "images": [
+                "./public/halloween_1.png",
+                "./public/halloween_1.png"
+            ]
+        }
+    ]
 }

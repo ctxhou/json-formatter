@@ -14,13 +14,36 @@
     
 </body>
 <script>
+    var schema = {
+        "title": "string",
+        "description": "text",
+        "icon": "string",
+        "greeting": "string",
+        "profile": "text",
+        "contact": "text",
+        "projects": [
+            {
+                "images": [
+                    null,
+                    null
+                ]
+            },
+            {
+                "textThres": 20
+            }
+        ]
+    }
+
     $.getJSON('/test.json', function(json, textStatus) {
-        console.log(json)
-        JSONFormatter.format(json, {
-          collapse: false, // Setting to 'true' this will format the JSON into a collapsable/expandable tree
-          appendTo: 'body', // A string of the id, class or element name to append the formatted json
-          list_id: 'json' // The name of the id at the root ul of the formatted JSON
-        })
+        JSONFormatter.format(
+            json, 
+            {
+              collapse: false, // Setting to 'true' this will format the JSON into a collapsable/expandable tree
+              appendTo: 'body', // A string of the id, class or element name to append the formatted json
+              list_id: 'json' // The name of the id at the root ul of the formatted JSON
+            },
+            schema
+        )
     });
     
 </script>
