@@ -5,6 +5,12 @@
     "greeting": "jisfjisdf jisdf ",
     "profile": "yomaninfisdf isjdf\nsojidf \n",
     "contact": "i am wwwy3y3, web developer, currently in love with nodeJS!",
+    "yo": {
+        "adasd": "a"
+    },
+    "yo2": {
+        "asd": ["123, 123"]
+    },
     "projects": [
         {
             "anchor": "p106",
